@@ -1,0 +1,22 @@
+public class Solution {
+    public int[] ProductExceptSelf(int[] nums) 
+    {
+        var resArray = new int[nums.Length];
+        
+        resArray[0] = 1;
+        var postfix = 1;
+        
+        for(int i=1; i < nums.Length; i++)
+        {
+            resArray[i] = nums[i-1] * resArray[i-1];
+        }
+        
+        for(int i=nums.Length-1; i >= 0; i--)
+        {
+            resArray[i] = resArray[i] * postfix;
+            postfix = postfix * nums[i];
+        }
+        
+        return resArray;
+    }
+}

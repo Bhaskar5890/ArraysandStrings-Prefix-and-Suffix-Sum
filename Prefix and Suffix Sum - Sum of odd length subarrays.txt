@@ -1,0 +1,19 @@
+public class Solution {
+    public int SumOddLengthSubarrays(int[] arr) 
+    {
+        int n = arr.Length;
+        int sum = 0;
+        for(int i = 0; i < n; i++)    
+        {
+            var totalSubarrays = (n - i) * (i + 1);
+            var halfTotalSubarrays = totalSubarrays/2;
+            if(totalSubarrays % 2 == 1)
+            {
+                halfTotalSubarrays++;
+            }
+            sum += halfTotalSubarrays * arr[i];
+        }
+        
+        return sum;
+    }
+}

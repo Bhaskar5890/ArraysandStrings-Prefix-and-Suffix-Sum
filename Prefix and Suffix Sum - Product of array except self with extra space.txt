@@ -1,0 +1,23 @@
+public class Solution {
+    public int[] ProductExceptSelf(int[] nums) 
+    {
+      (int, int)[] mulArray = new (int, int)[nums.Length];
+      mulArray[0] = (1,1);
+      mulArray[mulArray.Length-1] = (1, 1);
+
+      for (int i = 1; i < mulArray.Length; i++)
+      {
+        mulArray[i].Item1 = mulArray[i - 1].Item1 * nums[i - 1];
+      }
+      for (int i = mulArray.Length-2; i >= 0; i--)
+      {
+        mulArray[i].Item2 = mulArray[i + 1].Item2 * nums[i + 1];
+      }
+
+      for (int i = 0; i < nums.Length; i++)
+      {
+        nums[i] = mulArray[i].Item1 * mulArray[i].Item2;
+      }
+      return nums;
+    }
+}
